@@ -22,6 +22,17 @@ class PomodoroTimer {
         document.getElementById('work').addEventListener('click', () => this.setMode('work'));
         document.getElementById('short-break').addEventListener('click', () => this.setMode('short-break'));
         document.getElementById('long-break').addEventListener('click', () => this.setMode('long-break'));
+        document.getElementById('one-min').addEventListener('click', () => this.setCustomTimer(1));
+        document.getElementById('three-min').addEventListener('click', () => this.setCustomTimer(3));
+        document.getElementById('five-min').addEventListener('click', () => this.setCustomTimer(5));
+    }
+
+    setCustomTimer(minutes) {
+        this.pause();
+        this.currentMode = `custom-${minutes}`;
+        this.timeLeft = minutes * 60;
+        this.updateModeButtons();
+        this.updateDisplay();
     }
 
     start() {
@@ -97,7 +108,14 @@ class PomodoroTimer {
 
     updateModeButtons() {
         document.querySelectorAll('.modes button').forEach(btn => btn.classList.remove('active'));
-        document.getElementById(this.currentMode).classList.add('active');
+        if (['work', 'short-break', 'long-break'].includes(this.currentMode)) {
+            document.getElementById(this.currentMode).classList.add('active');
+        } else if (this.currentMode.startsWith('custom-')) {
+            const min = this.currentMode.split('-')[1];
+            if (min === '1') document.getElementById('one-min').classList.add('active');
+            if (min === '3') document.getElementById('three-min').classList.add('active');
+            if (min === '5') document.getElementById('five-min').classList.add('active');
+        }
     }
 
     playNotification() {
