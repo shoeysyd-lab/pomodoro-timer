@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ff6b6b">
+</head>
+<body>
+    <div class="container">
+        <h1>Pomodoro Timer</h1>
+        <div class="timer-display">
+            <div id="time">25:00</div>
+            <div id="mode">Work Session</div>
+        </div>
+        <div class="controls">
+            <button id="start">Start</button>
+            <button id="pause">Pause</button>
+            <button id="reset">Reset</button>
+        </div>
+        <div class="modes">
+            <button id="work" class="active">Work (25min)</button>
+            <button id="short-break">Short Break (5min)</button>
+            <button id="long-break">Long Break (15min)</button>
+        </div>
+        <div class="stats">
+            <p>Completed Pomodoros: <span id="pomodoros">0</span></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
